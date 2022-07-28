@@ -1,0 +1,38 @@
+server:
+    port: 8080
+# H2 -------------------------------------------------------
+spring:
+    datasource:
+        url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+        username: sa
+        password: sa
+        driver-class-name: org.h2.Driver
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.H2Dialect
+    # OAuth2 con Google -----------------------------------------
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 966696005896-17gcnvlvlhclcu8qa7ivgk61fjfivkvu.apps.googleusercontent.com
+                        client-secret: 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
+                        scope:
+                            - email
+                            - profile
+    # RabbitMQ (Docker) ------------------------------
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
+comidev:
+    # RabbitMQ (ENV) ------------------------------
+    queue:
+        email: send-email
+    routing:
+        email: routing-email
